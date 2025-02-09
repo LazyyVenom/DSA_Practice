@@ -8,7 +8,7 @@ def sum_back(prev_sum, num):
 # print(100 * (100 + 1) // 2)
 
 def fac(res ,num):
-    if num == 0 or num == 1:
+    if num <= 0 or num == 1:
         return res
     return fac(res * num, num - 1)
 
