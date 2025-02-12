@@ -1,6 +1,5 @@
 from typing import List
 
-
 def selection_sort(nums: List[int]) -> List[int]:
     """
     Finds the smallest element in the unsorted part and swaps it with the first unsorted element,
