@@ -3,6 +3,9 @@ class Node:
         self.data = data
         self.next = None
 
+    def __str__(self):
+        return f'Node({self.data})'
+
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -28,6 +31,35 @@ class LinkedList:
             new_node.next = self.head
             self.head = new_node
         self.size += 1
+
+    def insert(self, index, data):
+        if index == self.size - 1:
+            self.append(data)
+        elif index == 0:
+            self.prepend(data)
+        else:
+            i = index
+            curr = self.head
+            while i > 1:
+                curr = curr.next
+                i -= 1
+            new_node = Node(data)
+            new_node.next = curr.next
+            curr.next = new_node
+            self.size += 1
+    
+    def isEmpty(self):
+        return self.size == 0
+
+    def popFirst(self):
+        if self.isEmpty():
+            print("LinkedList Is Empty")
+            return
+
+        self.head = self.head.next
+        self.size -= 1
+        if self.isEmpty():
+            self.tail = None
     
     def __str__(self):
         if self.head is None:
@@ -52,14 +84,21 @@ class LinkedList:
                 current = current.next
             return current.data
 
+    def __setitem__(self, index, data):
+        if index >= self.size:
+            raise IndexError("Index out of range")
+        else:
+            current = self.head
+            for _ in range(index):
+                current = current.next
+            current.data = data
 
 if __name__ == "__main__":
     l = LinkedList()
     l.append(1)
     l.append(2)
     l.append(3)
-    print(l)
-    print(len(l))
-    l.prepend(0)
+    l.append(4)
+    l.append(5)
     print(l)
     print(len(l))
