@@ -58,13 +58,25 @@ class LinkedList:
             self.tail = None
 
     def pop(self, index = self.size - 1):
+        if self.isEmpty:
+            print("Empty")
+            return 
+
         i = index
         curr = self.head
         while i > 1:
             i -= 1
             curr = curr.next
-            
-
+        
+        temp = curr
+        data = curr.next.data
+        curr.next = curr.next.next
+        del temp
+        if index == self.size - 1:
+            self.tail = temp
+        
+        size -= 1
+        return data
 
     def __str__(self):
         if self.head is None:

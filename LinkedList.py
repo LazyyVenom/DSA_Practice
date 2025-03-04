@@ -61,6 +61,34 @@ class LinkedList:
         if self.isEmpty():
             self.tail = None
     
+    def pop(self, index):
+        if self.isEmpty():
+            print("Empty")
+            return 
+        
+        if index >= self.size:
+            print("Index out of range")
+        
+        if index == 0:
+            self.popFirst()
+            return
+
+        i = index
+        curr = self.head
+        while i > 1:
+            i -= 1
+            curr = curr.next
+        
+        temp = curr
+        data = curr.next.data
+        curr.next = curr.next.next
+        del temp
+        if index == self.size - 1:
+            self.tail = temp
+        
+        self.size -= 1
+        return data
+    
     def __str__(self):
         if self.head is None:
             return "Empty"
@@ -100,5 +128,8 @@ if __name__ == "__main__":
     l.append(3)
     l.append(4)
     l.append(5)
+    print(l)
+    print(len(l))
+    l.pop(0)
     print(l)
     print(len(l))
