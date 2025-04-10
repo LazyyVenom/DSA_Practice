@@ -73,15 +73,16 @@ class CircularLinkedList:
 
         else:
             curNode = self._head
-            for i in range(len(self._size) - 1):
+            for i in range(len(self) - 1):
                 curNode = curNode.next
             
             curNode.next = self._head
+            self._tail = curNode
             self._size -= 1
     
     def delete(self, idx):
         if len(self) <= idx:
-            raise IndexError
+            raise IndexError("Out Of Index Error")
 
         elif len(self) == 1:
             self._head = None
