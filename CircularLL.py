@@ -14,12 +14,32 @@ class CircularLinkedList:
 
     def append(self, e):
         newNode = Node(e)
-        if self._size == 0:
+        if self._head is None:
             self._head = newNode
-        
-        newNode.next = self._head
-        self._tail = newNode
+            self._tail = newNode
+            newNode.next = newNode
+        else:
+            self._tail.next = newNode
+            newNode.next = self._head
+            self._tail = newNode
         self._size += 1
     
+    def display(self):
+        curr = self._head
+        for i in range(len(self)):
+            print(f"{curr.data} -> ", end="")
+            curr = curr.next
+
     def insert(self, e, idx):
         pass
+
+
+if __name__ == "__main__":
+    cll = CircularLinkedList()
+    cll.append(1)
+    cll.append(2)
+    cll.append(3)
+    cll.append(4)
+    cll.append(5)
+    cll.display()
+    print()
